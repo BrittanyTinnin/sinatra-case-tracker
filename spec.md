@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Specifications for the Sinatra Assessment
 
 Specs:
