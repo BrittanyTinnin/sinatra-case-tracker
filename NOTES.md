@@ -1,11 +1,14 @@
 <!-- markdownlint-disable -->
 #layout of project
 
-user has many cases
-user has email, username, password
+user 
+has many cases
+has email, username, password
 
 
-cases belong to user
+cases 
+belong to user
+has case summary(content)
 -types of cases
 -officers assigned to case
 -collect and secured evidence
@@ -21,9 +24,32 @@ cases belong to user
 -number of witnesses
 -list of suspects
 -photos of suspects
--photos of crime scenes
+-case summary
+-photos of crime scenes???
 -test test test test test test test test test test
 -what else do i need???
 
+User:
+- [ ] controller
+- [ ] model
+- [ ] view
+    - [ ] edit
+    - [ ] index
+    - [ ] new
+    - [ ] show
+- [ ] migration table
+- [ ] css
+
+
+Cases:
+- [ ] controller
+- [ ] model
+- [ ] view
+    - [ ] edit
+    - [ ] index
+    - [ ] new
+    - [ ] show
+- [ ] migration table
+- [ ] css
 
 
