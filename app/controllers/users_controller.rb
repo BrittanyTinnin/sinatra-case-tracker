@@ -20,14 +20,26 @@ class UsersController < ApplicationController
   end
 
 
-  # GET: /users/new
-  get "/users/new" do
-    erb :"/users/new.html"
+  # GET: /login
+  get "/login" do
+    if logged_in?
+      redirect to "/cases"
+    else
+      erb :"/users/login"
   end
 
-  # GET: /users/5
-  get "/users/:id" do
-    erb :"/users/show.html"
+  #   POST: /login
+  post "/login" do
+    if params[:username].empty? || params[:password].empty?
+      redirect to "/login"
+    else
+      user = User.find(params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect to "/cases"
+      else
+        redirect to "/login"
+      end
   end
 
   # GET: /users/5/edit
