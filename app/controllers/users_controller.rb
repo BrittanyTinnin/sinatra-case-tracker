@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
+  # GET: /signup - route to create user
+  get "/signup" do
+    if logged_in?
+      redirect to "/cases"
+    else
+      erb :"users/create_user"
+    end
   end
 
   # GET: /users/new
