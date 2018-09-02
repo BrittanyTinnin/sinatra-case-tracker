@@ -9,14 +9,20 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST: /signup
+  post "/signup" do
+    if params[:email].empty? || params[:username].empty? || params[:password].empty?
+      redirect to "/signup"
+    else
+      user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
+      session[:user_id] = user.id
+      redirect "/cases"
+  end
+
+
   # GET: /users/new
   get "/users/new" do
     erb :"/users/new.html"
-  end
-
-  # POST: /users
-  post "/users" do
-    redirect "/users"
   end
 
   # GET: /users/5
