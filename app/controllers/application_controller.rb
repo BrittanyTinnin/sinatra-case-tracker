@@ -5,12 +5,13 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    register Sinatra::ActiveRecordExtension
     enable :sessions
     set :session_secret, "secret"
   end
 
   get "/" do
-    erb :welcome
+    erb :homepage
   end
   
   helpers do
