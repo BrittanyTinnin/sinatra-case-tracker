@@ -9,6 +9,7 @@ has email, username, password
 cases 
 belong to user
 has case summary(content)
+-create feature to upload prime suspect in case?
 -types of cases
 -officers assigned to case
 -collect and secured evidence
