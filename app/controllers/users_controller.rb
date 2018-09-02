@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
       session[:user_id] = user.id
       redirect "/cases"
+    end
   end
 
 
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
       redirect to "/cases"
     else
       erb :"/users/login"
+    end
   end
 
 
@@ -45,8 +47,9 @@ class UsersController < ApplicationController
       else
         redirect to "/login"
       end
-  end
 
+    end
+  end
 
 
   # GET: /logout
@@ -64,7 +67,7 @@ class UsersController < ApplicationController
   end
 
 
-  
+
   # DELETE: /users/5/delete
   # delete "/users/:id/delete" do
   #   redirect "/users"
