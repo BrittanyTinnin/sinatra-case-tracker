@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     register Sinatra::ActiveRecordExtension
     enable :sessions
     set :session_secret, "secret"
+    use Rack::Flash
   end
 
   # flash[:notice] = "You can stop rolling your own now."
