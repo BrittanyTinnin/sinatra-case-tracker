@@ -10,6 +10,9 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
+  # flash[:notice] = "You can stop rolling your own now."
+
+
   get "/" do
     erb :homepage
   end
