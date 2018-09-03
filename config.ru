@@ -5,6 +5,8 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 
-run ApplicationController
+
 use CasesController
 use UsersController
+run ApplicationController
+
