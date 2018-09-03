@@ -14,10 +14,20 @@ class CasesController < ApplicationController
     erb :"/cases/new"
   end
 
-#   # POST: /cases
-#   post "/cases" do
-#     redirect "/cases"
-#   end
+  # POST: /cases
+  post "/cases" do
+    if !logged_in?
+      redirect to "/login"
+    else
+      if params[:content].empty?
+        redirect to "/cases/new"
+      else
+        user = User.find(session[:user_id])
+        user.cases.create(content: params[:content])
+        redirect "/cases"
+      end
+    end
+  end
 
 #   # GET: /cases/5
 #   get "/cases/:id" do
