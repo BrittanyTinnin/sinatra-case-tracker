@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     else
       @user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
+      binding.pry
       redirect "/cases"
     end
   end
@@ -37,11 +38,10 @@ class UsersController < ApplicationController
 
   # POST: /login - after login form submission
   post "/login" do
+    @user = User.find(params[:username])
     if params[:username].empty? || params[:password].empty?
       redirect to "/login"
     else
-      binding.pry
-      @user = User.find(params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         redirect to "/cases"
