@@ -1,8 +1,8 @@
 <h2>Edit Case</h2>
 
-<form action="/tweets/<%= @case.id %>" method="POST">
+<form action="/cases/<%= @case.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <textarea name="content" value="<%= @case.content%>"><textarea>
+    <textarea name="content" cols="80" rows="8" value="<%= @case.content%>"></textarea><br /><br />
     <input type="submit" value="submit">
 </form>
 

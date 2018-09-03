@@ -1,5 +1,6 @@
 class CasesController < ApplicationController
 
+  #TODO:when cases show, need to show cases assigned only to that user
   # GET: /cases
   get "/cases" do
     redirect to "/login" unless logged_in?
@@ -59,14 +60,11 @@ class CasesController < ApplicationController
   delete "/cases/:id/delete" do
     if logged_in?
       @case = Case.find(params[:id])
-      if @case.user == current_user
-         @case.destroy
-      else
-          redirect '/cases'
-      end
+      @case.destroy
+      redirect '/cases'
     else
         redirect '/login'
-    end"
+    end
   end
 
 end
