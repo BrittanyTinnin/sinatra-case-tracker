@@ -37,17 +37,12 @@ class UsersController < ApplicationController
 
   # POST: /login - after login form submission
   post "/login" do
-    if params[:username].empty? || params[:password].empty?
-      redirect to "/login"
+    user = User.find(params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect to "/cases"
     else
-      user = User.find(params[:username])
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        redirect to "/cases"
-      else
-        redirect to "/login"
-      end
-
+      redirect to "/login"
     end
   end
 
