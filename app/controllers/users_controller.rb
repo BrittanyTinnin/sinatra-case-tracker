@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     else
       user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
       session[:user_id] = user.id
-      redirect "/cases"
+      redirect "/login"
     end
   end
 
@@ -37,12 +37,13 @@ class UsersController < ApplicationController
 
   # POST: /login - after login form submission
   post "/login" do
-    user = User.find(params[:username])
+    user = User.find_by(:username => params[:username])
+    binding.pry
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to "/cases"
-    else
-      redirect to "/login"
+    # else
+    #   redirect to "/login"
     end
   end
 
