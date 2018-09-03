@@ -6,14 +6,10 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     set :session_secret, "secret"
-<<<<<<< HEAD
     use Rack::Flash
-=======
     enable :sessions
     register Sinatra::ActiveRecordExtension
 
-
->>>>>>> users_controller
   end
 
   # flash[:notice] = "You can stop rolling your own now."

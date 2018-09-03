@@ -2,15 +2,17 @@ class CasesController < ApplicationController
 
   # GET: /cases
   get "/cases" do
+    redirect to "/login" unless logged_in?
     @user = current_user
     @cases = Case.all
     erb :"cases/index"
   end
 
-#   # GET: /cases/new
-#   get "/cases/new" do
-#     erb :"/cases/new.html"
-#   end
+  # GET: /cases/new
+  get "/cases/new" do
+    redirect to "/login" unless logged_in?
+    erb :"/cases/new"
+  end
 
 #   # POST: /cases
 #   post "/cases" do

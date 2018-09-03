@@ -16,16 +16,9 @@ class UsersController < ApplicationController
     if params[:email].empty? || params[:username].empty? || params[:password].empty?
       redirect to "/signup"
     else
-<<<<<<< HEAD
-      @user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
-      session[:user_id] = @user.id
-      binding.pry
-      redirect "/cases"
-=======
       user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
       session[:user_id] = user.id
       redirect "/login"
->>>>>>> users_controller
     end
   end
 
@@ -44,27 +37,12 @@ class UsersController < ApplicationController
 
   # POST: /login - after login form submission
   post "/login" do
-<<<<<<< HEAD
-    @user = User.find(params[:username])
-    if params[:username].empty? || params[:password].empty?
-      redirect to "/login"
-    else
-      if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        redirect to "/cases"
-      else
-        redirect to "/login"
-      end
-
-=======
     user = User.find_by(:username => params[:username])
-    binding.pry
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to "/cases"
-    # else
-    #   redirect to "/login"
->>>>>>> users_controller
+    else
+      redirect to "/login"
     end
   end
 
