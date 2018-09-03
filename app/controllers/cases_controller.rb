@@ -3,7 +3,7 @@ class CasesController < ApplicationController
   # GET: /cases
   get "/cases" do
     @user = current_user
-    @files = Case.all
+    @cases = Case.all
     erb :"cases/index"
   end
 
