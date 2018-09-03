@@ -1,1 +1,11 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1>View Case</h1><br />
+
+<p><%= @case.content %></p><br />
+
+<p><a href="/cases/<%= @case.id %>/edit">Edit Cases</a></p><br />
+
+<form action="/cases/<%= @case.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+</form>
+

@@ -29,10 +29,12 @@ class CasesController < ApplicationController
     end
   end
 
-#   # GET: /cases/5
-#   get "/cases/:id" do
-#     erb :"/cases/show.html"
-#   end
+  # GET: /cases/:id
+  get "/cases/:id" do
+    redirect to "/login" unless logged_in?
+    @case = Case.find(params[:id])
+    erb :"/cases/show"
+  end
 
 #   # GET: /cases/5/edit
 #   get "/cases/:id/edit" do
