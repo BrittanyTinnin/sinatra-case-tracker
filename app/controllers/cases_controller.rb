@@ -29,25 +29,44 @@ class CasesController < ApplicationController
     end
   end
 
-  # GET: /cases/:id
+  # GET: /cases/5
   get "/cases/:id" do
     redirect to "/login" unless logged_in?
     @case = Case.find(params[:id])
     erb :"/cases/show"
   end
 
-#   # GET: /cases/5/edit
-#   get "/cases/:id/edit" do
-#     erb :"/cases/edit.html"
-#   end
+  # GET: /cases/5/edit
+  get "/cases/:id/edit" do
+    redirect to "/login" unless logged_in?
+    @case = Case.find(params[:id])
+    erb :"/cases/edit"
+  end
 
-#   # PATCH: /cases/5
-#   patch "/cases/:id" do
-#     redirect "/cases/:id"
-#   end
+  # PATCH: /cases/5
+  patch "/cases/:id" do
+    @case = Case.find(params[:id])
+    if params[:content].empty?
+      redirect "/cases/#{@case.id}/edit"
+    else
+      @case.update(content: params[:content])
+      @case.save
+      redirect to "/cases/#{@case.id}"
+    end
+  end
 
-#   # DELETE: /cases/5/delete
-#   delete "/cases/:id/delete" do
-#     redirect "/cases"
-#   end
+  # DELETE: /cases/5/delete
+  delete "/cases/:id/delete" do
+    if logged_in?
+      @case = Case.find(params[:id])
+      if @case.user == current_user
+         @case.destroy
+      else
+          redirect '/cases'
+      end
+    else
+        redirect '/login'
+    end"
+  end
+
 end

@@ -1,1 +1,10 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2>Edit Case</h2>
+
+<form action="/tweets/<%= @case.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <textarea name="content" value="<%= @case.content%>"><textarea>
+    <input type="submit" value="submit">
+</form>
+
+
+
