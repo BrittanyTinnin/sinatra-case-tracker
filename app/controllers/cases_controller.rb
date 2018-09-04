@@ -1,11 +1,10 @@
 class CasesController < ApplicationController
 
-  #TODO:when cases show, need to show cases assigned only to that user
   # GET: /cases
   get "/cases" do
     redirect to "/login" unless logged_in?
     @user = current_user
-    @cases = Case.all
+    @cases = @user.cases
     erb :"cases/index"
   end
 

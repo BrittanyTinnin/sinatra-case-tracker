@@ -30,4 +30,3 @@ ActiveRecord::Schema.define(version: 20180901013956) do
 
 end
 
-#TODO:how do I see all the inputed info in my database?
