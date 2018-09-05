@@ -1,7 +1,7 @@
+
 class UsersController < ApplicationController
   use Rack::Flash
 
-  #TODO: implement flash message 
 
   # GET: /signup - route to create user
   get "/signup" do
@@ -41,9 +41,9 @@ class UsersController < ApplicationController
 
   # POST: /login - after login form submission
   post "/login" do
-    if params[:email].empty? || params[:username].empty? || params[:password].empty?
+    if params[:username].empty? || params[:password].empty?
       flash[:alert] = "all fields required"
-      redirect to "/signup"
+      redirect to "/login"
     else
       user = User.find_by(:username => params[:username])
       if user && user.authenticate(params[:password])
@@ -68,10 +68,10 @@ class UsersController < ApplicationController
 
 
   # GET: /users/:id - route to show individual users
-  get "/users/:id" do
-    @user = User.find_by_id(params[:id])
-    erb :"users/show"
-  end
+  # get "/users/:id" do
+  #   @user = User.find_by_id(params[:id])
+  #   erb :"users/show"
+  # end
 
 
 

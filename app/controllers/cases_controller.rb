@@ -1,6 +1,6 @@
+
 class CasesController < ApplicationController
   use Rack::Flash
-  #TODO:make sure other users can't edit other user cases
 
   # GET: /cases
   get "/cases" do
@@ -56,7 +56,7 @@ class CasesController < ApplicationController
     else
       @case.update(content: params[:content])
       @case.save
-      flash[:alert] = "updated cases"
+      flash[:alert] = "updated case"
       redirect to "/cases/#{@case.id}"
     end
   end
