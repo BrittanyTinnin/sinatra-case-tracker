@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  #TODO: implement flash message 
+
   # GET: /signup - route to create user
   get "/signup" do
     if logged_in?
@@ -56,7 +58,6 @@ class UsersController < ApplicationController
 
 
   # GET: /users/:id - route to show individual users
-  #TODO:need to create link for the route
   get "/users/:id" do
     @user = User.find_by_id(params[:id])
     erb :"users/show"

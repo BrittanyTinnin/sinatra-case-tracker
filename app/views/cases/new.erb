@@ -1,8 +1,9 @@
-<h1>Create New Case Summary</h1><br />
+<h2>New Case</h2><br />
 
 <br />
 <form action="/cases" method="POST">
-    <input type="text" name="title" required>
+    Title: <input type="text" name="title" required><br /><br />
+    <label>Summary: </label><br />
     <textarea name="content" cols="80" rows="8" required></textarea><br /><br />
     <input type="submit" value="submit">
 </form>

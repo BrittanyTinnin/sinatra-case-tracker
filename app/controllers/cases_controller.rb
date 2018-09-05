@@ -1,5 +1,7 @@
 class CasesController < ApplicationController
 
+  #TODO:make sure other users can't edit other user cases
+
   # GET: /cases
   get "/cases" do
     redirect to "/login" unless logged_in?

@@ -12,8 +12,6 @@ class ApplicationController < Sinatra::Base
 
   end
 
-  # flash[:notice] = "You can stop rolling your own now."
-
 
   get "/" do
     erb :homepage
