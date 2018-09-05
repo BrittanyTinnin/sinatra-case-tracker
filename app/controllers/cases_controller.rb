@@ -1,5 +1,5 @@
 class CasesController < ApplicationController
-
+  use Rack::Flash
   #TODO:make sure other users can't edit other user cases
 
   # GET: /cases
@@ -26,6 +26,7 @@ class CasesController < ApplicationController
       else
         user = User.find(session[:user_id])
         user.cases.create(title: params[:title], content: params[:content])
+        flash[:alert] = "new case submitted"
         redirect "/cases"
       end
     end
@@ -35,6 +36,7 @@ class CasesController < ApplicationController
   get "/cases/:id" do
     redirect to "/login" unless logged_in?
     @case = Case.find(params[:id])
+    redirect to "/cases" if @case.user != current_user 
     erb :"/cases/show"
   end
 
@@ -42,6 +44,7 @@ class CasesController < ApplicationController
   get "/cases/:id/edit" do
     redirect to "/login" unless logged_in?
     @case = Case.find(params[:id])
+    redirect to "/cases" if @case.user != current_user 
     erb :"/cases/edit"
   end
 
@@ -53,6 +56,7 @@ class CasesController < ApplicationController
     else
       @case.update(content: params[:content])
       @case.save
+      flash[:alert] = "updated cases"
       redirect to "/cases/#{@case.id}"
     end
   end
@@ -61,7 +65,9 @@ class CasesController < ApplicationController
   delete "/cases/:id/delete" do
     if logged_in?
       @case = Case.find(params[:id])
+      redirect to "/cases" if @case.user != current_user 
       @case.destroy
+      flash[:alert] = "case deleted"
       redirect '/cases'
     else
         redirect '/login'

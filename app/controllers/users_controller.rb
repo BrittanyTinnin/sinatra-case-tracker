@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  use Rack::Flash
 
   #TODO: implement flash message 
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   # POST: /signup - after signup form submission
   post "/signup" do
     if params[:email].empty? || params[:username].empty? || params[:password].empty?
+      flash[:alert] = "all fields required"
       redirect to "/signup"
     else
       user = User.create(:email => params[:email], :username => params[:username], :password => params[:password])
@@ -39,12 +41,19 @@ class UsersController < ApplicationController
 
   # POST: /login - after login form submission
   post "/login" do
-    user = User.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect to "/cases"
+    if params[:email].empty? || params[:username].empty? || params[:password].empty?
+      flash[:alert] = "all fields required"
+      redirect to "/signup"
     else
-      redirect to "/login"
+      user = User.find_by(:username => params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        flash[:alert] = "sucessfully logged in"
+        redirect to "/cases"
+      else
+        flash[:alert] = "username/password incorrect"
+        redirect to "/login"
+      end
     end
   end
 
@@ -52,6 +61,7 @@ class UsersController < ApplicationController
   # GET: /logout
   get "/logout" do
     session.clear
+    flash[:alert] = "sucessfully logged out"
     redirect to "/login"
   end
 
