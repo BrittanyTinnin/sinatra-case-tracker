@@ -4,7 +4,7 @@
 
 
 <% @cases.each do |file| %>
-    <%= file.content %><br />
+    <a href="/cases/<%= file.id %>"><%= file.title %></a><br />
 <% end %><br />
 
 

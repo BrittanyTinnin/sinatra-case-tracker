@@ -1,5 +1,5 @@
-<h3>Case Details</h3><br />
-
+<h2>Case Details</h2><br />
+<h4><%= @case.title %></h4><br />
 <p><%= @case.content %></p><br />
 
 <p><a href="/cases/<%= @case.id %>/edit"><button>Edit</button></a></p>
@@ -9,3 +9,4 @@
     <input type="submit" value="Delete">
 </form>
 
+<p><a href="/cases"><button>Home</button></a></p>

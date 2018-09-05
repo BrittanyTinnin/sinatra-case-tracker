@@ -19,11 +19,11 @@ class CasesController < ApplicationController
     if !logged_in?
       redirect to "/login"
     else
-      if params[:content].empty?
+      if params[:content].empty? || params[:title].empty?
         redirect to "/cases/new"
       else
         user = User.find(session[:user_id])
-        user.cases.create(content: params[:content])
+        user.cases.create(title: params[:title], content: params[:content])
         redirect "/cases"
       end
     end

@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20180901013956) do
 
   create_table "cases", force: :cascade do |t|
+    t.string   "title"
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -29,4 +30,3 @@ ActiveRecord::Schema.define(version: 20180901013956) do
   end
 
 end
-
