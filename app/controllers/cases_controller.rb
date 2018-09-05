@@ -44,7 +44,7 @@ class CasesController < ApplicationController
   get "/cases/:id/edit" do
     redirect to "/login" unless logged_in?
     @case = Case.find(params[:id])
-    redirect to "/cases" if @case.user != current_user 
+    redirect to "/cases" unless authorize
     erb :"/cases/edit"
   end
 
@@ -65,7 +65,7 @@ class CasesController < ApplicationController
   delete "/cases/:id/delete" do
     if logged_in?
       @case = Case.find(params[:id])
-      redirect to "/cases" if @case.user != current_user 
+      redirect to "/cases" unless authorize 
       @case.destroy
       flash[:alert] = "case deleted"
       redirect '/cases'

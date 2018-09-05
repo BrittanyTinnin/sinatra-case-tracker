@@ -27,6 +27,10 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
+    def authorize
+      current_user == @case.user
+    end
+
   end
   
 end
