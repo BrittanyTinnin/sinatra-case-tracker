@@ -9,7 +9,6 @@ class ApplicationController < Sinatra::Base
     use Rack::Flash
     enable :sessions
     register Sinatra::ActiveRecordExtension
-
   end
 
 

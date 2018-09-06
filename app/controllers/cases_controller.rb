@@ -54,7 +54,7 @@ class CasesController < ApplicationController
     if params[:content].empty?
       redirect "/cases/#{@case.id}/edit"
     else
-      @case.update(content: params[:content])
+      @case.update(title: params[:title], content: params[:content])
       @case.save
       flash[:alert] = "updated case"
       redirect to "/cases/#{@case.id}"
